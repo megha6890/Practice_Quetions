@@ -1,0 +1,84 @@
+/*************************************************
+    
+    class Node {
+        public :
+
+        int data;
+        Node *next;
+
+        Node(int data) {
+            this -> data = data;
+            this -> next = NULL;
+        }
+    };
+
+*************************************************/
+Node* Loop(Node* head){
+    if(head==NULL)
+    return NULL;
+
+    Node* slow=head;
+    Node* fast=head;
+    while (fast != NULL && fast->next != NULL) {
+      slow = slow->next;
+      fast = fast->next->next;
+      if(slow==fast)
+      return slow;
+    }
+    return NULL;
+}
+Node* intersection(Node* head) {
+
+ 
+
+    if(head == NULL) 
+
+        return NULL;
+
+ 
+
+    Node* intersectionNode = Loop(head);
+
+    
+
+    if(intersectionNode == NULL)
+
+        return NULL;
+
+    
+
+    Node* slow = head;
+
+ 
+
+    while(slow != intersectionNode) {
+
+        slow = slow -> next;
+
+        intersectionNode = intersectionNode -> next;
+
+    }  
+
+ 
+
+    return slow;
+
+}
+Node *removeLoop(Node *head)
+{
+    if(head==NULL)
+    return NULL;
+  
+  Node* startOfLoop=intersection(head);
+  if(startOfLoop==NULL)
+  return head;
+
+   Node* curr=startOfLoop;
+   
+  while(curr->next!=startOfLoop){
+      curr=curr->next;
+  }
+  curr->next=NULL;
+  return head;
+    // Write your code here.
+}
