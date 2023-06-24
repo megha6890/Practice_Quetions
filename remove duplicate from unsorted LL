@@ -1,0 +1,45 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+    Following is the class structure of the Node class:
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node(int data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+      unordered_set<int>s;
+        Node *curr=head;
+        while(curr->next!=NULL){
+            s.insert(curr->data);
+            if(s.find(curr->next->data)!=s.end()){
+                curr->next=curr->next->next;
+            }
+            else{
+                curr=curr->next;
+            }
+        }
+        return head;
+*****************************************************************/
+
+Node *removeDuplicates(Node *head)
+{
+    unordered_set<int>s;
+    Node* curr=head;
+    while( curr->next!=NULL){
+        s.insert(curr->data);
+        if(s.find(curr->next->data)!=s.end()){
+            curr->next=curr->next->next;
+        }
+        else{
+            curr=curr->next;
+        }
+        
+    }
+    return head;
+    // Write your code here
+}
