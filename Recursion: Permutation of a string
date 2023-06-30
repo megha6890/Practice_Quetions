@@ -1,0 +1,22 @@
+class Solution {
+public:
+   void solve(vector<vector<int>>&ans, vector<int>nums,int index){
+   if(index>=nums.size()){
+       ans.push_back(nums);
+       return;
+   }
+   for(int j=index;j<nums.size();j++){
+       swap(nums[index],nums[j]);
+       solve(ans,nums,index+1);
+       //backtracking taki abc se jo acb ya or kuch bhi bna h use hm waps abc bna paye
+       swap(nums[index],nums[j]);
+   }
+   }
+   
+    vector<vector<int>> permute(vector<int>& nums) {
+        int index=0;
+        vector<vector<int>>ans;
+        solve(ans,nums,index);
+        return ans;
+    }
+};
