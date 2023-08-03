@@ -1,0 +1,21 @@
+
+//using Recursion
+#include <bits/stdc++.h> 
+void fun(stack<int>& myStack, int x)
+{
+    if(myStack.empty()){
+        myStack.push(x);
+        return;
+    }
+    int key=myStack.top();
+    myStack.pop();
+    
+    fun(myStack,x);
+    myStack.push(key);
+}
+stack<int> pushAtBottom(stack<int>& myStack, int x) 
+{
+    fun(myStack,x);
+    return myStack;
+    // Write your code here.
+}
