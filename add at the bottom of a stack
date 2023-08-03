@@ -1,3 +1,4 @@
+//Iterative Approach
 #include <bits/stdc++.h> 
 stack<int> pushAtBottom(stack<int>& myStack, int x) 
 {
@@ -18,3 +19,4 @@ stack<int> pushAtBottom(stack<int>& myStack, int x)
     return myStack;
     // Write your code here.
 }
+
