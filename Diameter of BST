@@ -1,0 +1,25 @@
+class Solution {
+
+    private Pair<Integer,Integer> diameterFast(TreeNode root){
+         if(root==null)
+        {
+            return new Pair<>(0,0);//(height,diameter)
+        }
+        Pair<Integer,Integer>left=diameterFast(root.left);
+        Pair<Integer,Integer>right=diameterFast(root.right);
+
+        int leftHeight=left.getKey();
+        int leftDiameter=left.getValue();
+        int rightHeight=right.getKey();
+        int rightDiameter=right.getValue();
+
+        int height=1+Math.max(leftHeight,rightHeight);
+        int diameter=Math.max(leftHeight+rightHeight,Math.max(leftDiameter,rightDiameter));
+
+        return new Pair<>(height,diameter);
+        
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+    return diameterFast(root).getValue();
+    }
+}
