@@ -1,0 +1,26 @@
+class Solution {
+  public Pair<Boolean,Integer> isBalancedfast(TreeNode root) {
+   
+        if(root==null)
+        { 
+            Pair<Boolean,Integer>p=new Pair<>(true,0);
+        return p;
+        }
+
+       Pair<Boolean,Integer>left=isBalancedfast(root.left);
+       Pair<Boolean,Integer>right=isBalancedfast(root.right);
+
+
+       boolean diff=Math.abs(left.getValue()-right.getValue())<=1;
+          int height=Math.max(left.getValue(),right.getValue())+1;
+       Pair<Boolean,Integer>ans;
+       
+
+       boolean isSubtreesBalanced=left.getKey() && right.getKey();
+       boolean currentTreeBalanced=diff && isSubtreesBalanced;
+       return new Pair<>(currentTreeBalanced,height);
+    }
+    public boolean isBalanced(TreeNode root) {
+        return isBalancedfast(root).getKey();
+    }
+}
