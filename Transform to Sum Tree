@@ -1,0 +1,15 @@
+int sumTree(Node* node){
+        if(node==NULL)
+        return 0;
+        
+        int sum=sumTree(node->left)+sumTree(node->right);
+        int data=node->data
+;        node->data=sum;
+        
+        return sum+data;
+    }
+    void toSumTree(Node *node)
+    {
+            sumTree(node);
+        // Your code here
+    }
