@@ -1,0 +1,27 @@
+map<int,vector<int>>mp;
+void solve(Node* root,int i){
+       if(root==NULL)
+       return;
+       
+       mp[i].push_back(root->data);
+       
+       solve(root->left,i+1);
+       solve(root->right,i);
+       
+    }
+
+vector<int> diagonal(Node *root)
+{
+    vector<int>v;
+    
+    mp.clear();
+    solve(root,0);
+    for(auto it:mp){
+        vector<int>temp=it.second;
+        for(auto i:temp){
+            v.push_back(i);
+        }
+    }
+    return v;
+   // your code here
+}
