@@ -1,0 +1,46 @@
+ bool dfs(vector<vector<int>>&G,vector<bool>&vis,int i,int par){
+     
+      vis[i]=1;
+      for(auto it:G[i]){
+          if(!vis[it]){
+              if(dfs(G,vis,it,i))
+              return 1;
+          }
+          else if(it!=par)
+          return 1;
+      
+          
+      }
+      return 0;
+  }
+    int isTree(int n, int m, vector<vector<int>> &adj) {
+        // code here
+        vector<vector<int>>G(n);
+        
+        for(auto it:adj){
+            int u=it[0];
+            int v=it[1];
+            
+            if(u==v)
+            return 0;
+            
+            G[u].push_back(v);
+            G[v].push_back(u);
+        }
+        
+        vector<bool>vis(n,0);
+        // agar hm i=0 to n chlayenge to sare node visit ho jayenge
+        // lekin hme vo node count nahi krne h jo connected nahi h
+        // kuki vo tree form nhi krenge
+        
+        // so here we are checking only connected to 0
+        if(dfs(G,vis,0,-1))
+        return 0;
+       
+       //nodes which are seperate from graph
+       for(int i=0;i<n;i++){
+           if(vis[i]==0)
+           return 0;
+       }
+       return 1;
+    }
