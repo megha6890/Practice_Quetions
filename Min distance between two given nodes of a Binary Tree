@@ -1,0 +1,55 @@
+class GfG {
+    Node lca(Node root,int a,int b){
+        if(root==null)
+        return null;
+        
+        if(root.data==a || root.data==b){
+            return root;
+        }
+        
+        Node left=lca(root.left,a,b);
+        Node right=lca(root.right,a,b);
+        
+        if(left==null)
+        return right;
+        
+        if(right==null)
+        return left;
+        
+        return root;
+    }
+    
+    int findHeight(Node givenNode,int target){
+        if(givenNode==null)
+        return -1;
+        
+        if(givenNode.data==target)
+        return 0;
+        
+        int leftHeight=findHeight(givenNode.left,target);
+        
+        if(leftHeight!=-1)
+        return leftHeight+1;
+        
+        int rightHeight=findHeight(givenNode.right,target);
+        
+        if(rightHeight!=-1)
+        return rightHeight+1;
+        
+        return -1;
+        
+    }
+    
+    int findDist(Node root, int a, int b) {
+         if(root==null)
+         return -1;
+         
+        Node temp=lca(root,a,b);
+        
+        int ha=findHeight(temp,a);
+        int hb=findHeight(temp,b);
+        
+        return ha+hb;
+        // Your code here
+    }
+}
