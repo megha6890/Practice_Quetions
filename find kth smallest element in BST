@@ -1,0 +1,22 @@
+class Solution {
+    public PriorityQueue<Integer>pq=new PriorityQueue<>();
+    private void solve(TreeNode root, int k, PriorityQueue<Integer>pq){
+        if(root==null)
+        return;
+
+        solve(root.left,k,pq);
+        pq.add(root.val);
+        solve(root.right,k,pq);
+    }
+    public int kthSmallest(TreeNode root, int k) {
+        
+        
+        int ans=0;
+        solve(root, k, pq);
+        while(k!=0){
+          ans=pq.poll();
+          k--;
+        }
+        return ans;
+    }
+}
